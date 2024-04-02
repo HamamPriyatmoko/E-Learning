@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang= "en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=
+      "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate= "_layout" >
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initialscale=1">
+        <title>Exams</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <main>
+                <section class="py-5 text-center container">
+                    <div class="row py-lg-3">
+                        <div class="col-lg-6 col-md-8 mx-auto">
+                            <h1 class="fw-light display-1">Exams</h1>
+                        </div>
+                    </div>
+                </section>
+                <div class="album py-5 bg-light">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body container">
+                                <form th:action="@{/search}" method="GET" th:object="${searchForm}">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-groupprepend">
+                                                <a href="/addExam"
+                                                   class="btn btn-primary"
+                                                   style="padding-top: 10px; padding-bottom: 10px;"><i class="fa fa-plus-circle"></i>TAMBAH
+                                                    EXAM</a>
+                                            </div>
+                                            <div class="input-group-prepend">
+                                                <a href="/openpdf/exam" class="btn btn-success mx-3"
+                                                style="padding-top: 10px; padding-bottom: 10px;">EXPORT PDF</a>
+                                            </div>
+                                            <input type="text" class="form-control" name="q"
+                                                   placeholder="Cari berdasarkan nama exam" th:field="*{keyword}">
+                                            <div class="input-group-append">
+                                                <button type="submit"
+                                                        class="btn btn-primary" style="padding-top: 10px; padding-bottom: 10px;"><i class="fa fa-search"></i>
+                                                    CARI
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th>NAME</th>
+                                                <th>TIME</th>
+                                                <th>TOTAL QUESTION</th>
+                                                <th>START</th>
+                                                <th>END</th>
+                                                <th>ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="ujian, iterStat :
+                                                ${exam}">
+                                                <th scope="row"
+                                                    th:text="${iterStat.count}"></th>
+                                                <td
+                                                    th:text="${ujian.name}"></td>
+                                                <td
+                                                    th:text="${ujian.time}"></td>
+                                                <td
+                                                    th:text="${ujian.total_question}"></td>
+                                                <td
+                                                    th:text="${ujian.start}"></td>
+                                                <td
+                                                    th:text="${ujian.end}"></td>
+                                                <td>
+                                                    <a th:href="@{'/viewExam/'+${ujian.id}}"
+                                                       class="btn btn-success btn-sm">View</a>
+                                                    <a th:href="@{'/edit/' +${ujian.id}}"
+                                                       class="btn btn-warning btn-sm">Edit</a>
+                                                    <a class="btn btn-danger btn-sm"
+                                                       th:href="@{'/delete/' +${ujian.id}}"
+                                                       onclick="return confirm('Yakin mau hapus data?')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

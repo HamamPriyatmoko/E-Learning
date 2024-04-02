@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initialscale=1">
+        <title>Add Exams</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <main>
+                <div class="album py-5">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4><i class="fas fa-exam"></i> Tambah
+                                    Exam</h4>
+                            </div>
+                            <div class="card-body container">
+                                <div class="col-lg-12">
+                                    <!-- binding obeject -->
+                                    <form th:object="${exam}" method="post"
+                                          th:action="@{/save}" class="mb-5">
+                                        <div class="row mb-4">
+                                            <h4 for="inputEmail3"
+                                                class="col-sm-2 col-form-label">Nama Exam</h4>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"
+                                                       type="text" th:field="*{name}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <h4 for="inputEmail3"
+                                                class="col-sm-2 col-form-label">Durasi Exam (Menit)</h4>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"
+                                                       type="number" name="total_question"
+                                                       th:field="*{time}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <h4 for="inputEmail3"
+                                                class="col-sm-2 col-form-label">Total Question</h4>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"
+                                                       type="number" name="total_question"
+                                                       th:field="*{total_question}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <h4 for="inputEmail3"
+                                                class="col-sm-2 col-form-label">Jam Mulai</h4>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"
+                                                       type="datetime-local" th:field="*{start}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <h4 for="inputEmail3"
+                                                class="col-sm-2 col-form-label">Jam Selesai</h4>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="datetime-local" th:field="*{end}">
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paperplane"></i>
+                                            SIMPAN</button>
+                                        <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i>
+                                            RESET</button>
+                                        <a href="/exam" class="btn btn-danger my-3"> BATAL </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
